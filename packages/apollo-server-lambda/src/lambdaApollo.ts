@@ -55,6 +55,8 @@ export function graphqlLambda(
         callback(null, {
           body: graphqlResponse,
           statusCode: 200,
+          isBase64Encoded: true,
+          statusDescription: '200 OK',
           headers: responseInit.headers,
         });
       },
@@ -62,6 +64,8 @@ export function graphqlLambda(
         if ('HttpQueryError' !== error.name) return callback(error);
         callback(null, {
           body: error.message,
+          isBase64Encoded: true,
+          statusDescription: '200 OK',
           statusCode: error.statusCode,
           headers: error.headers,
         });
